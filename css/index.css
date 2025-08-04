@@ -1,0 +1,380 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    touch-action: manipulation;
+}
+
+/* 粒子背景样式 */
+#particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none; /* 允许点击穿透到下层元素 */
+}
+
+.container {
+    text-align: center;
+    z-index: 10;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari 支持 */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: block;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    transition: all 0.3s ease;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 2px 2px 0 #ff7676, 4px 4px 0 rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    animation: bounce 1s ease infinite alternate;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin: 0;
+    text-shadow: 1px 1px 0 #ff7676;
+}
+
+p {
+    font-size: 1.1rem;
+    color: #fff;
+    margin: 15px 0 30px;
+    line-height: 1.5;
+}
+
+.start-btn {
+    padding: 12px 30px;
+    background: #fff;
+    color: #ff7676;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+    width: 80%;
+    max-width: 200px;
+}
+
+.start-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.balloon {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    background: #ff7676;
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite;
+    z-index: 1;
+}
+
+.balloon:before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: #ccc;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.balloon:nth-child(2) {
+    background: #4fc3f7;
+    left: 10%;
+    top: 20%;
+    animation-delay: 1s;
+}
+
+.balloon:nth-child(3) {
+    background: #8bc34a;
+    left: 75%;
+    top: 15%;
+    animation-delay: 2s;
+}
+
+.balloon:nth-child(4) {
+    background: #ffeb3b;
+    left: 85%;
+    top: 50%;
+    animation-delay: 3s;
+}
+
+.balloon:nth-child(5) {
+    background: #9c27b0;
+    left: 5%;
+    top: 60%;
+    animation-delay: 4s;
+}
+
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #f44336;
+    opacity: 0;
+    z-index: 1;
+}
+
+.countdown {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
+}
+
+.countdown.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.countdown-number {
+    font-size: 6rem;
+    color: #fff;
+    animation: pulse 1s infinite;
+}
+
+/* 纯色弹窗样式 - 手机适配 */
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: #ff7676;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    color: white;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.modal-input {
+    padding: 12px 15px;
+    font-size: 16px;
+    margin: 15px 0;
+    width: 100%;
+    border: none;
+    border-radius: 25px;
+    outline: none;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.modal-btn {
+    padding: 12px 25px;
+    background: white;
+    color: #ff7676;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.modal-btn:active {
+    transform: translateY(2px);
+}
+
+#errorMsg {
+    color: #ffeb3b;
+    display: none;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(5deg);
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* 密码提示弹窗样式 */
+#hintModal .modal-content {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    animation: fadeIn 0.5s ease;
+}
+
+#hintBtn {
+    background: #fff;
+    color: #ff7676;
+    margin-top: 15px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* 响应式媒体查询 */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+        margin: 10px 0 20px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .start-btn {
+        padding: 10px 25px;
+        font-size: 1.1rem;
+    }
+
+    .countdown-number {
+        font-size: 4rem;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 320px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .modal-input {
+        padding: 10px;
+    }
+
+    .modal-btn {
+        padding: 10px 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 40px;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+}

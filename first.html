@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>生日快乐！</title>
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+            height: 100%;
+            touch-action: manipulation;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #ffebee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            transition: background-color 0.5s;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body.dimmed {
+            background-color: #e0e0e0;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 380px;
+            height: auto;
+            min-height: 550px;
+            background: linear-gradient(145deg, #fff, #fce4ec);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25),
+                        inset 0 -3px 10px rgba(255,255,255,0.5);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 10;
+            padding: 25px;
+            box-sizing: border-box;
+            text-align: center;
+            margin: 25px 0;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #e91e63;
+            margin-top: 30px;
+            font-size: clamp(1.8rem, 7vw, 2.2rem);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .message {
+            margin-top: 25px;
+            color: #666;
+            line-height: 1.8;
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            padding: 0 15px;
+            font-weight: 400;
+            text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .cake {
+            width: 150px;
+            height: 120px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .plate {
+            width: 180px;
+            height: 20px;
+            background: #bdbdbd;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -10px;
+            left: -15px;
+        }
+
+        .cake-bottom {
+            width: 150px;
+            height: 60px;
+            background: #f8bbd0;
+            border-radius: 10px 10px 0 0;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .cake-top {
+            width: 160px;
+            height: 40px;
+            background: #f48fb1;
+            border-radius: 10px 10px 0 0;
+            position: absolute;
+            bottom: 60px;
+            left: -5px;
+        }
+
+        .candle {
+            width: 10px;
+            height: 40px;
+            background: #4fc3f7;
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+
+        .flame {
+            width: 15px;
+            height: 25px;
+            background: #ffeb3b;
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            bottom: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px #ffeb3b, 0 0 20px #ff9800;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .flame.active {
+            opacity: 1;
+            animation: flicker 0.5s infinite alternate;
+        }
+
+        .decoration {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .cake:hover .decoration {
+            animation: bounce 0.5s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: clamp(0.9rem, 4vw, 1rem);
+            transition: all 0.3s;
+            min-width: 120px;
+            min-height: 44px;
+        }
+
+        .btn:active {
+            background: #c2185b;
+            transform: translateY(2px);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f44336;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); opacity: 1; }
+            100% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: #e91e63;
+            font-weight: bold;
+            font-size: clamp(0.8rem, 3.5vw, 0.9rem);
+        }
+
+        .hearts {
+            position: absolute;
+            font-size: 20px;
+            color: #e91e63;
+            animation: float 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .petal {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .wish-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #e91e63;
+            font-size: clamp(1.8rem, 7vw, 2.4rem);
+            text-align: center;
+            z-index: 101;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            text-shadow: 2px 2px 8px rgba(255,255,255,0.9);
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,255,255,0.95));
+            padding: 20px 35px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3),
+                        inset 0 0 15px rgba(255,255,255,0.8);
+            width: 90%;
+            max-width: 320px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .wish-message.active {
+            opacity: 1;
+            visibility: visible;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes fall {
+            0% {
+                -webkit-transform: translate(0, -10vh) rotate(0deg);
+                transform: translate(0, -10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translate(var(--end-x), 100vh) rotate(360deg);
+                transform: translate(var(--end-x), 100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* 流星样式 */
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px white;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        @keyframes shooting {
+            0% {
+                transform: translate(0, 0) rotate(20deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(500px, 200px) rotate(20deg);
+                opacity: 0;
+            }
+        }
+
+        /* 提示框样式 */
+        .alert-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            text-align: center;
+            max-width: 85%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: fadeIn 0.5s;
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .alert-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: clamp(0.8rem, 3.5vw, 0.9rem);
+            min-height: 44px;
+        }
+
+        /* 添加朦胧遮罩层样式 */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 链接样式 */
+        .signature-btn {
+            margin-top: 20px;
+            background: transparent;
+            border: none;
+            color: #e91e63;
+            font-size: clamp(0.8rem, 3.5vw, 0.9rem);
+            font-style: italic;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signature-btn:hover {
+            background: rgba(233, 30, 99, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .signature-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #e91e63;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .signature-btn:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .signature-btn:active {
+            transform: translateY(0);
+        }
+
+        /* 引导点击的脉冲动画 */
+        .signature-btn.pulse {
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(233, 30, 99, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(233, 30, 99, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>生日快乐</h1>
+
+        <div class="cake">
+            <div class="plate"></div>
+            <div class="cake-bottom"></div>
+            <div class="cake-top"></div>
+            <div class="candle"></div>
+            <div class="flame"></div>
+
+            <!-- 蛋糕装饰 -->
+            <div class="decoration" style="top: 20px; left: 30px; background: #e91e63; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"></div>
+            <div class="decoration" style="top: 15px; left: 70px; background: #ff4081; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"></div>
+            <div class="decoration" style="top: 25px; left: 110px; background: #e91e63; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"></div>
+            <div class="decoration" style="top: 10px; left: 50px; background: #ff4081; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"></div>
+            <div class="decoration" style="top: 30px; left: 90px; background: #e91e63; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"></div>
+        </div>
+
+        <div class="message">
+            亲爱的，愿你新的一岁每一天都沐浴在幸福的光芒里，永远美丽如初。<br>
+            今天全世界的光都为你点亮，生日快乐!
+        </div>
+
+        <div class="btn-group">
+            <button class="btn" id="lightCandle">点亮蜡烛</button>
+        </div>
+
+        <button class="signature-btn pulse" onclick="window.location.href='mail.html'">—— 生活就要一往无前</button>
+    </div>
+
+    <!-- 许愿消息 -->
+    <div class="wish-message" id="wishMessage">请闭上眼睛许个愿吧···</div>
+
+    <!-- 朦胧遮罩层 -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- 添加音频元素 -->
+    <audio id="birthdayMusic" loop>
+        <source src="sundries/HappyBirthday.mp3" type="audio/mpeg">
+        <!-- 请确保在sundries目录下有名为HappyBirthday.mp3的音频文件 -->
+    </audio>
+
+    <!-- 提示框 -->
+    <div class="alert-box" id="alertBox">
+        <p>幸福开心与快乐</p>
+        <button class="alert-btn" id="alertBtn">接接接</button>
+    </div>
+
+    <script>
+        // 防止双击缩放
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
+
+        // 防止手势缩放
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始时不显示脉冲动画
+            const signatureBtn = document.querySelector('.signature-btn');
+            signatureBtn.classList.remove('pulse');
+            const candleBtn = document.getElementById('lightCandle');
+            const flame = document.querySelector('.flame');
+            const wishMessage = document.getElementById('wishMessage');
+            const birthdayMusic = document.getElementById('birthdayMusic');
+            const alertBox = document.getElementById('alertBox');
+            const alertBtn = document.getElementById('alertBtn');
+            const overlay = document.getElementById('overlay');
+
+            // 显示提示框
+            setTimeout(() => {
+                alertBox.style.display = 'block';
+            }, 500);
+
+            // 关闭提示框
+            alertBtn.addEventListener('click', function() {
+                alertBox.style.display = 'none';
+            });
+
+            // 花瓣图片base64 (粉色花瓣)
+            const petalImages = [
+                'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmY4OGNjIiBkPSJNNDQ4IDI1NkMyNDAgMjU2IDY0IDE2MCA2NCA2NHM5Ni0xNzYgMTkyLTE3NiAxOTIgOTYgMTkyIDE5Mi05NiAxOTItMTkyIDE5MnoiLz48L3N2Zz4=',
+                'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmY2NmJiIiBkPSJNNDQ4IDI1NkMyNDAgMjU2IDY0IDE2MCA2NCA2NHM5Ni0xNzYgMTkyLTE3NiAxOTIgOTYgMTkyIDE5Mi05NiAxOTItMTkyIDE5MnoiLz48L3N2Zz4=',
+                'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmY0NDk5IiBkPSJNNDQ4IDI1NkMyNDAgMjU2IDY0IDE2MCA2NCA2NHM5Ni0xNzYgMTkyLTE3NiAxOTIgOTYgMTkyIDE5Mi05NiAxOTItMTkyIDE5MnoiLz48L3N2Zz4='
+            ];
+
+            // 点亮蜡烛
+            candleBtn.addEventListener('click', function() {
+                if(!flame.classList.contains('active')) {
+                    // 点亮蜡烛
+                    flame.classList.add('active');
+                    candleBtn.textContent = '许愿中...';
+                    candleBtn.disabled = true;
+
+                    // 显示朦胧遮罩
+                    overlay.classList.add('active');
+
+                    // 设置背景为淡灰色
+                    document.body.classList.add('dimmed');
+
+                    // 播放音乐
+                    birthdayMusic.play().catch(e => {
+                        console.log('音乐播放失败:', e);
+                        // 如果自动播放被阻止，提示用户
+                        const alert = document.createElement('div');
+                        alert.className = 'alert-box';
+                        alert.innerHTML = '<p>请点击"确定"后，再尝试点亮蜡烛</p><button class="alert-btn" id="retryBtn">确定</button>';
+                        document.body.appendChild(alert);
+
+                        document.getElementById('retryBtn').addEventListener('click', function() {
+                            alert.remove();
+                        });
+
+                        candleBtn.textContent = '点亮蜡烛';
+                        candleBtn.disabled = false;
+                        flame.classList.remove('active');
+                        overlay.classList.remove('active');
+                        document.body.classList.remove('dimmed');
+                        return;
+                    });
+
+                    // 创建流星雨
+                    createShootingStars();
+
+                    // 显示许愿消息
+                    setTimeout(() => {
+                        wishMessage.classList.add('active');
+                        createPetals();
+
+                        // 5秒后关闭许愿消息并熄灭蜡烛
+                        setTimeout(() => {
+                            wishMessage.classList.remove('active');
+                            flame.classList.remove('active');
+                            candleBtn.textContent = '点亮蜡烛';
+                            candleBtn.disabled = false;
+
+                            // 移除朦胧遮罩
+                            overlay.classList.remove('active');
+
+                            // 恢复背景
+                            document.body.classList.remove('dimmed');
+                            // 创建庆祝效果并开始引导点击签名按钮
+                            createConfetti();
+                            createHearts();
+                            signatureBtn.classList.add('pulse');
+
+                            // 鼠标悬停时停止脉冲动画（先移除旧监听器再添加新监听器）
+                            signatureBtn.removeEventListener('mouseenter', arguments.callee);
+                            signatureBtn.addEventListener('mouseenter', function handler() {
+                                signatureBtn.classList.remove('pulse');
+                                signatureBtn.removeEventListener('mouseenter', handler);
+                            });
+                        }, 5000);
+                    }, 500);
+                }
+            });
+
+            // 创建流星雨
+            function createShootingStars() {
+                for(let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        const star = document.createElement('div');
+                        star.className = 'shooting-star';
+                        star.style.left = Math.random() * 100 + 'vw';
+                        star.style.top = Math.random() * 30 + 'vh';
+                        star.style.animation = `shooting ${Math.random() * 2 + 1}s linear forwards`;
+                        document.body.appendChild(star);
+
+                        // 移除元素
+                        setTimeout(() => {
+                            star.remove();
+                        }, 3000);
+                    }, i * 300);
+                }
+            }
+
+            // 创建粉色花瓣
+            function createPetals() {
+                for(let i = 0; i < 30; i++) {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal';
+                    petal.style.backgroundImage = `url('${petalImages[Math.floor(Math.random() * petalImages.length)]}')`;
+                    petal.style.width = (Math.random() * 30 + 20) + 'px';
+                    petal.style.height = petal.style.width;
+                    petal.style.left = Math.random() * 100 + 'vw';
+                    petal.style.top = '-50px';
+                    petal.style.opacity = '0.8';
+                    document.body.appendChild(petal);
+                    petal.style.setProperty('--end-x', (Math.random() * 100 - 50) + 'px');
+                    petal.style.animation = `fall ${Math.random() * 5 + 5}s linear forwards`;
+
+                    // 移除元素
+                    setTimeout(() => {
+                        petal.remove();
+                    }, 6000);
+                }
+            }
+
+            // 创建彩色纸屑
+            function createConfetti() {
+                for(let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.backgroundColor = getRandomColor();
+                    confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+                    document.body.appendChild(confetti);
+
+                    // 动画
+                    setTimeout(() => {
+                        confetti.style.opacity = '1';
+                        confetti.style.transition = 'all ' + (Math.random() * 3 + 2) + 's ease-out';
+                        confetti.style.top = '100vh';
+                        confetti.style.left = Math.random() * 100 + 'vw';
+                    }, i * 100);
+
+                    // 移除元素
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }
+            }
+
+            // 创建漂浮的心形
+            function createHearts() {
+                for(let i = 0; i < 10; i++) {
+                    const heart = document.createElement('div');
+                    heart.className = 'hearts';
+                    heart.innerHTML = '❤';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.top = (Math.random() * 100 + 100) + 'vh';
+                    heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(heart);
+
+                    // 动画开始
+                    setTimeout(() => {
+                        heart.style.opacity = '1';
+                        heart.style.top = '-20vh';
+                    }, i * 300);
+
+                    // 移除元素
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 5000);
+                }
+            }
+
+            // 生成随机颜色
+            function getRandomColor() {
+                const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#FF5722'];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+
+            // 解决移动端自动播放问题
+            document.addEventListener('click', function initAudio() {
+                // 预加载音频
+                birthdayMusic.load();
+                document.removeEventListener('click', initAudio);
+            }, { once: true });
+        });
+    </script>
+</body>
+</html>

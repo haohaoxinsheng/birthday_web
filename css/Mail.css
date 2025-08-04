@@ -1,0 +1,508 @@
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+XiaoWei&display=swap');
+
+/* 基础样式 */
+body {
+    background-color: #ffd6e7;
+    background-image: linear-gradient(135deg, #ffd6e7 0%, #fff0f5 100%);
+    font-family: 'Ma Shan Zheng', cursive;
+    margin: 0;
+    padding: 10px;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-text-size-adjust: 100%;
+    min-height: 100vh;
+}
+
+/* 页面容器 */
+.page-wrapper {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+/* 信件容器 */
+.letter-container {
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #fff9fc;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
+    position: relative;
+    z-index: 10;
+    border: 2px dashed #ff85a2;
+    box-sizing: border-box;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="white" opacity="0.3"/><path d="M0 0L100 100M100 0L0 100" stroke="rgba(255,133,162,0.1)" stroke-width="1"/></svg>');
+    background-size: 20px 20px;
+}
+
+/* 信件头部 */
+.letter-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px dashed #ffb6c1;
+}
+
+.stamp {
+    position: absolute;
+    top: -15px;
+    right: 10px;
+    width: 60px;
+    height: 70px;
+    background-color: #ff2d75;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    transform: rotate(5deg);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    border: 2px dashed white;
+    z-index: 2;
+}
+
+.date-badge {
+    display: inline-block;
+    background-color: #ffe6f0;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #ff2d75;
+    margin-top: 10px;
+    border: 1px solid #ffb6c1;
+}
+
+/* 标题样式 */
+h1 {
+    color: #ff2d75;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(255, 45, 117, 0.2);
+    font-weight: bold;
+}
+
+/* 信件内容 */
+.letter-content {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #5a3d3d;
+    margin-bottom: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 15px;
+    padding-left: 5px;
+}
+
+.letter-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.letter-content::-webkit-scrollbar-track {
+    background: #ffe6f0;
+    border-radius: 10px;
+}
+
+.letter-content::-webkit-scrollbar-thumb {
+    background: #ff85a2;
+    border-radius: 10px;
+}
+
+.letter-content::-webkit-scrollbar-thumb:hover {
+    background: #ff2d75;
+}
+
+.letter-content p {
+    margin-bottom: 15px;
+    transition: transform 0.3s;
+}
+
+.letter-content p:hover {
+    transform: translateX(5px);
+}
+
+/* 诗歌容器 */
+.poem-container {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: rgba(255, 182, 193, 0.1);
+    border-radius: 15px;
+    position: relative;
+    border-left: 4px solid #ff85a2;
+}
+
+/* 诗歌样式 */
+.birthday-poem {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: #d23669;
+    text-align: center;
+    padding: 10px;
+    font-family: 'ZCOOL XiaoWei', serif;
+}
+
+.poem-line {
+    display: block;
+    margin-bottom: 8px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.poem-line:hover {
+    color: #ff2d75;
+    transform: scale(1.05);
+}
+
+/* 消息容器 */
+.message-container {
+    padding: 20px 0;
+}
+
+/* 问候语 */
+.greeting {
+    font-size: 1.3rem;
+    color: #d23669;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* 特殊文本 */
+.special-text {
+    color: #ff2d75;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 0 0 2px rgba(255, 45, 117, 0.2);
+}
+
+/* 引用样式 */
+.quote {
+    position: relative;
+    padding: 20px 30px;
+    margin: 25px 0;
+    background-color: #fff0f5;
+    border-radius: 15px;
+    font-style: italic;
+    box-shadow: 0 3px 10px rgba(255, 182, 193, 0.2);
+}
+
+.quote-icon {
+    color: #ffb6c1;
+    font-size: 24px;
+    position: absolute;
+}
+
+.quote-icon.left {
+    top: 10px;
+    left: 10px;
+}
+
+.quote-icon.right {
+    bottom: 10px;
+    right: 10px;
+}
+
+/* 高亮框 */
+.highlight-box {
+    background-color: rgba(255, 45, 117, 0.05);
+    border-left: 4px solid #ff2d75;
+    padding: 15px 20px;
+    margin: 20px 0;
+    border-radius: 0 15px 15px 0;
+}
+
+/* 提示框 */
+.tip-box {
+    background-color: #fff0f5;
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin: 20px 0;
+    box-shadow: 0 3px 10px rgba(255, 182, 193, 0.2);
+    border: 1px dashed #ffb6c1;
+}
+
+/* 阳光图标 */
+.sunshine-icon {
+    color: #ffac33;
+    margin-right: 5px;
+}
+
+/* 高亮文本 */
+.highlight {
+    color: #ff2d75;
+    font-weight: 500;
+}
+
+/* 最终祝福 */
+.final-wish {
+    font-size: 1.3rem;
+    color: #ff2d75;
+    text-align: center;
+    margin-top: 30px;
+    font-weight: 500;
+    text-shadow: 0 0 2px rgba(255, 45, 117, 0.2);
+}
+
+/* 签名 */
+.signature {
+    text-align: right;
+    font-size: 1.2em;
+    color: #ff2d75;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px dashed #ffb6c1;
+}
+
+.signature-text {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.signature-date {
+    font-size: 0.9rem;
+    color: #d23669;
+}
+
+/* 装饰元素 */
+.letter-decorations {
+    position: relative;
+    height: 50px;
+}
+
+.corner-decoration {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+}
+
+.top-left {
+    top: -25px;
+    left: -25px;
+    border-top: 2px solid #ff85a2;
+    border-left: 2px solid #ff85a2;
+    border-top-left-radius: 10px;
+}
+
+.top-right {
+    top: -25px;
+    right: -25px;
+    border-top: 2px solid #ff85a2;
+    border-right: 2px solid #ff85a2;
+    border-top-right-radius: 10px;
+}
+
+.bottom-left {
+    bottom: -25px;
+    left: -25px;
+    border-bottom: 2px solid #ff85a2;
+    border-left: 2px solid #ff85a2;
+    border-bottom-left-radius: 10px;
+}
+
+.bottom-right {
+    bottom: -25px;
+    right: -25px;
+    border-bottom: 2px solid #ff85a2;
+    border-right: 2px solid #ff85a2;
+    border-bottom-right-radius: 10px;
+}
+
+.feather-pen {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    font-size: 30px;
+    color: #8b5a2b;
+    transform: rotate(-30deg);
+    opacity: 0.6;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.feather-pen:hover {
+    transform: rotate(-20deg) scale(1.1);
+    opacity: 1;
+}
+
+.heart {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    font-size: 25px;
+    color: #ff6b9d;
+    animation: pulse 1.5s infinite;
+}
+
+/* 音乐播放器 */
+.music-player {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 15px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #ffb6c1;
+}
+
+.music-btn {
+    background-color: #ff2d75;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    box-shadow: 0 3px 6px rgba(255, 45, 117, 0.3);
+}
+
+.music-btn:hover {
+    background-color: #ff1493;
+    transform: scale(1.1) rotate(10deg);
+}
+
+.music-title {
+    font-size: 14px;
+    color: #ff2d75;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.music-progress {
+    width: 60px;
+    height: 4px;
+    background-color: #ffe6f0;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-left: 5px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0;
+    background-color: #ff2d75;
+    transition: width 0.3s;
+}
+
+/* 动画效果 */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.falling {
+    position: fixed;
+    top: -50px;
+    z-index: 1;
+    animation: falling linear infinite;
+}
+
+@keyframes falling {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* 下一页按钮样式 */
+.next-page-btn {
+    display: block;
+    margin: 25px auto 10px;
+    padding: 12px 30px;
+    background-color: #ff2d75;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 45, 117, 0.3);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.next-page-btn:hover {
+    background-color: #ff1493;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 45, 117, 0.4);
+}
+
+.next-page-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: 0.5s;
+}
+
+.next-page-btn:hover:before {
+    left: 100%;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .letter-container {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .birthday-poem {
+        font-size: 1.3rem;
+    }
+    
+    .greeting, .final-wish {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .letter-container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .birthday-poem {
+        font-size: 1.1rem;
+    }
+    
+    .greeting, .final-wish {
+        font-size: 1.1rem;
+    }
+    
+    .music-player {
+        padding: 8px 12px;
+    }
+    
+    .music-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .music-title {
+        max-width: 70px;
+        font-size: 12px;
+    }
+}

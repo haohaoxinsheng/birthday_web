@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>生日祝福</title>
+    <link rel="stylesheet" href="css/Mail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- 飘落的元素 -->
+    <div id="falling-elements"></div>
+    
+    <!-- 页面容器 -->
+    <div class="page-wrapper animate__animated animate__fadeIn">
+        <!-- 信件内容 -->
+        <div class="letter-container">
+            <div class="letter-header">
+                <div class="stamp">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+                <h1 class="animate__animated animate__heartBeat animate__delay-1s">亲爱的，生日快乐！</h1>
+                <div class="date-badge" id="current-date"></div>
+            </div>
+            
+            <div class="letter-content">
+                <div class="poem-container animate__animated animate__fadeIn animate__delay-1s">
+                    <p class="birthday-poem">
+                        <span class="poem-line">愿你的世界像烟火般绚烂，</span>
+                        <span class="poem-line">却不必如尘埃般徘徊。</span>
+                        <span class="poem-line">即使偶尔孤独如星火闪烁，</span>
+                        <span class="poem-line">也有属于自己的璀璨光芒。</span>
+                        <span class="poem-line">这首歌送你——</span>
+                        <span class="poem-line highlight">愿新的一岁，自由如风，清澈如初。</span>
+                    </p>
+                </div>
+                
+                <div class="message-container">
+                    <p class="greeting animate__animated animate__fadeIn animate__delay-2s">在这个独属于你的一天，送上最真挚的祝福！<span class="special-text">生日快乐！</span>今天不只是纪念你出生的日子，更是新篇章的开始。</p>
+                    
+                    <p>愿往后尽是山花烂漫，所有的美好都如期而至。</p>
+                    
+                    <div class="quote">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>诗人里尔克说："生活从今天开始。"让过去的阴霾随风飘散吧，前方有太多美好在等你。</p>
+                        <i class="fas fa-quote-right quote-icon right"></i>
+                    </div>
+                    
+                    <p>就像春天的嫩芽破土而出，今天就是你重获新生的时刻。所有过往，皆为序章。</p>
+                    
+                    <div class="highlight-box">
+                        <p>生命不是比较，而是接纳。你不必成为别人眼中的样子，只需要按照自己的心意，慢慢生长。</p>
+                    </div>
+                    
+                    <p>当一个人被真正地倾听和理解时，他就能开始理解自己。我在这里愿意倾听你所有的喜怒哀乐。</p>
+                    
+                    <p><i class="fas fa-sun sunshine-icon"></i> 今天的阳光特别好，就像特意为你准备的礼物。希望你能感受到这份温暖。</p>
+                    
+                    <div class="tip-box">
+                        <p><i class="fas fa-gift"></i> 忙里偷闲做一件让自己开心的小事：吃一块喜欢的蛋糕，听一首让你微笑的歌。</p>
+                    </div>
+                    
+                    <p>新的一岁，愿你像春天的树一样，在属于自己的节奏里舒展枝叶。</p>
+                    
+                    <p>记住，幸福往往就藏在这些细微的日常里，等着你去发现！</p>
+                    
+                    <p>愿你的笑容永远灿烂如初，愿你的生活充满阳光和快乐！</p>
+                    
+                    <p class="final-wish animate__animated animate__pulse animate__infinite animate__slow">最后，再次祝你生日快乐！希望这个特别的日子能带给你欢乐和惊喜！</p>
+                </div>
+            </div>
+            
+            <!-- 装饰元素 -->
+            <div class="letter-decorations">
+                <div class="corner-decoration top-left"></div>
+                <div class="corner-decoration top-right"></div>
+                <div class="corner-decoration bottom-left"></div>
+                <div class="corner-decoration bottom-right"></div>
+                <div class="feather-pen animate__animated animate__fadeIn animate__delay-3s">
+                    <i class="fas fa-feather-alt"></i>
+                </div>
+                <div class="heart animate__animated animate__pulse animate__infinite">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+            
+            <div class="signature">
+                <p class="signature-text">永远爱你的人</p>
+                <p class="signature-date" id="signature-date"></p>
+            </div>
+            
+            <!-- 下一页按钮 -->
+            <button class="next-page-btn animate__animated animate__bounceIn animate__delay-3s" onclick="window.location.href='particle.html'">
+                <i class="fas fa-magic"></i> 人生处处是惊喜 <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    
+    <audio id="bgMusic" loop>
+        <source src="sundries/HappyBirthday.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="js/Mail.js"></script>
+</body>
+</html>

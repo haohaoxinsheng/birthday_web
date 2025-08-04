@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="生日庆祝网站，为您提供专属生日体验">
+    <meta name="theme-color" content="#ff7676">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>生日快乐！</title>
+    <!-- HTML5 shim for IE8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- 引入外部CSS文件 -->
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!-- 粒子背景 Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- 气球背景 -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <!-- 主内容 -->
+    <div class="container" id="mainContainer">
+        <h1>Happy Birthday!</h1>
+        <h2 id="birthdayPerson">亲爱的</h2>
+        <p>欢迎来到宁宁为你准备的专属生日庆典！</p>
+        <button class="start-btn" id="startBtn">点击进入</button>
+    </div>
+
+    <!-- 倒计时 -->
+    <div class="countdown" id="countdown">
+        <div class="countdown-number" id="countdownNumber">3</div>
+    </div>
+
+    <!-- 纯色弹窗 -->
+    <div class="custom-modal" id="nameModal">
+        <div class="modal-content">
+            <div class="modal-title">请输入你的专属密码</div>
+            <input type="text" class="modal-input" id="nameInput" placeholder="请输入专属密码">
+            <button class="modal-btn" id="confirmBtn">确认</button>
+            <div id="errorMsg">哦吼，请先获得正确密钥哦，乖！</div>
+        </div>
+    </div>
+
+    <!-- 密码错误提示弹窗 -->
+    <div class="custom-modal" id="hintModal" style="display: none;">
+        <div class="modal-content">
+            <div id="hintText" style="margin-bottom: 20px; font-size: 18px;"></div>
+            <button class="modal-btn" id="hintBtn" style="display: none;">点击一下，进入游戏</button>
+        </div>
+    </div>
+
+    <!-- 引入外部JavaScript文件 -->
+    <script src="js/particles-background.js"></script>
+    <script src="js/index.js"></script>
+    <!-- 兼容性脚本 -->
+    <script src="js/compatibility.js"></script>
+</body>
+</html>
