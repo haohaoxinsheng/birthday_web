@@ -1,0 +1,106 @@
+html {
+   height: 100%;
+}
+
+body {
+   font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+   background: #79a8ae;
+   color: #CFEBE4;
+   font-size: clamp(14px, 4vw, 18px);
+   line-height: 1.6;
+   letter-spacing: 1px;
+   margin: 0;
+   overflow-x: hidden;
+}
+
+a {
+   color: #ebf7f4;
+}
+
+.body--ready {
+   background-color: #0f4c75
+}
+
+.text {
+   position: fixed;
+   bottom: 100px;
+   text-align: center;
+   width: 100%;
+}
+
+.canvas {
+   margin: 0 auto;
+   display: block;
+}
+
+img#logo {
+   width: 100px;
+   max-width: 80%;
+   height: auto;
+   background-size: cover;
+   border-radius: 50%;
+   box-shadow: 0px 0px 20px rgba(63, 81, 181, 0.72);
+   border: 2px solid #00a0ff;
+   opacity: 1;
+   margin: 10px auto;
+   transition: all 0.5s;
+}
+
+#logo:hover {
+   box-shadow: 0 0 10px #fff;
+   -webkit-box-shadow: 0 0 19px #fff;
+   transform: rotate(360deg);
+   -ms-transform: rotate(360deg);
+   /* IE 9 */
+   -moz-transform: rotate(360deg);
+   /* Firefox */
+   -webkit-transform: rotate(360deg);
+   /* Safari 和 Chrome */
+   -o-transform: rotate(360deg);
+   /* Opera */
+   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.cs {
+   width: 100%;
+   margin: 0 auto;
+   position: relative;
+   text-align: center;
+   padding-top: 20px;
+   z-index: 1;
+}
+
+.text {
+   position: relative;
+   bottom: auto;
+   text-align: center;
+   width: 100%;
+   font-weight: bold;
+   color: #ffffdd;
+   opacity: 1;
+   transition: opacity 0.5s ease-in-out;
+   padding: 20px 10px;
+   margin-top: 20px;
+   z-index: 1;
+}
+
+.text.show {
+   opacity: 1;
+}
+
+.text-right {
+   position: fixed;
+   bottom: 50px;
+   text-align: right;
+   width: 100%;
+   font-weight: bold;
+   }
+
+#github {
+   position: fixed;
+   top: 0;
+   right: 0;
+   border: 0;
+   z-index: 9999;
+   height: 10%
+}
